@@ -23,7 +23,7 @@
   users.users.server = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; 
-    hashedPasswordFile = ./secrets/server-pass;
+    hashedPassword = builtins.readFile ./secrets/server-pass;
   };
 
   users.extraGroups.docker.members = ["server"];
