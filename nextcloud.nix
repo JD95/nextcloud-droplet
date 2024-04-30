@@ -15,6 +15,7 @@ in {
         forceSSL = true;
         enableACME = true;
       };
+    };
   };
 
   security.acme = {
