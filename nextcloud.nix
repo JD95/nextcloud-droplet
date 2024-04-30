@@ -7,7 +7,7 @@ in {
   services.nginx = {
     enable = true;
     recommendedGzipSettings = true;
-    recommendedOptimization = true;
+    recommendedOptimisation = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
     virtualHosts = {
@@ -47,11 +47,12 @@ in {
 
   services.postgresql = {
     enable = true;
+    package = pkgs.postgresql_15;
     ensureDatabases = [ "nextcloud" ];
     ensureUsers = [
       {
         name = "nextcloud";
-        ensurePermissions."DATABASE nextcloud" = "ALL PRIVILEGES";
+        ensureDBOwnership = true;
       }
     ];
   }; 
