@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -17,13 +17,10 @@
 
   };
 
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.enable = true;
-
   users.users.server = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; 
-    hashedPassword = builtins.readFile ./secrets/server-pass;
+    hashedPassword = lib.removeSuffix "\n" (builtins.readFile ./secrets/server-pass);
   };
 
   users.extraGroups.docker.members = ["server"];

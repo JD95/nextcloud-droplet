@@ -9,5 +9,5 @@ mkdir secrets
 sops -d --extract '["nextcloud-password"]' vault.yaml > ./secrets/nextcloud-admin-pass
 sops -d --extract '["server-password"]' vault.yaml | mkpasswd -s > ./secrets/server-pass
 sops -d --extract '["config"]'   vault.yaml > ./secrets/nextcloud-secrets.json
-nixos-generate -f 'do' --flake .
+nixos-generate -f 'do' -c configuration.nix
 cleanup
